@@ -8,12 +8,11 @@ html {
 }
 body {
   background: #eee;
-  padding: 0 16px;
 }
 
 header {
   background-color: #f5ba13;
-  margin: auto -16px;
+  margin: auto;
   padding: 16px 32px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.3);
 }
@@ -27,13 +26,14 @@ header h1 {
 footer {
   position: absolute;
   text-align: center;
+  padding: 0;
   bottom: 0;
-  width: 100%;
+  width: 99%;
   height: 2.5rem;
 }
 
 footer p {
-  color: #ccc;
+  color: #888;
 }
 .note {
   background: #fff;

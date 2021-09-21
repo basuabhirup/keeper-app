@@ -9,3 +9,4 @@
 
 ## Steps I have followed:
 1. Downloaded the starting files and installed the requiring dependencies using `npm install` command.
+2. Created 4 components - `App`, `Header`, `Note` & `Footer` and edited them accordingly to render the corresponding elements in `ReactDOM`.
