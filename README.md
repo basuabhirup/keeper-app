@@ -1,5 +1,5 @@
 # Keeper App
-
+This project is a part of [The Complete 2021 Web Development Bootcamp](https://www.udemy.com/course/the-complete-web-development-bootcamp/) by [London App Brewery](https://www.londonappbrewery.com/), instructed by Dr. Angela Yu and hosted on Udemy.
 <div align="center">
     <img src="" alt="Project Screenshot" width=720px>
 </div>
