@@ -10,3 +10,4 @@ This project is a part of [The Complete 2021 Web Development Bootcamp](https://w
 ## Steps I have followed:
 1. Downloaded the starting files and installed the requiring dependencies using `npm install` command.
 2. Created 4 components - `App`, `Header`, `Note` & `Footer` and edited them accordingly to render the corresponding elements in `ReactDOM`.
+3. Rendered all the notes inside `src/notes.js` file dynamically as separate Note components.
