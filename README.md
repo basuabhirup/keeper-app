@@ -98,3 +98,25 @@ function deleteNote(id) {
 ```jsx
 <button onClick={ () => props.onClick(props.id)}>DELETE</button>
 ```
+<br />
+
+13. Added two dependencies from Material-UI using the `npm i @material-ui/icons @material-ui/core` command from the terminal.
+14. Imported `@material-ui/icons/Add`, `@material-ui/icons/Delete`, `@material-ui/core/Fab` and `@material-ui/core/Zoom` elements and used them inside corresponding components to improve the UI.
+15. Added another state variable `isClicked` using `React.useState()` hook inside `InputArea` component to manage its custom expansion functionality:
+```javascript
+const [isClicked, setIsClicked] = useState(false);
+```
+```jsx
+<form onSubmit={setIsClicked(false); ....... } ....... />
+.......
+{isClicked && <input name="title" ....../>}
+.......
+<textArea name="content" onClick={ () => setIsClicked(true)} rows={isClicked ? "3" : "1"} ......./>
+.......
+<Zoom in={isClicked}>
+    <Fab type="submit"><AddIcon /></Fab>
+</Zoom>
+```
+<br />
+
+16. Added a [transparent texture background](https://www.transparenttextures.com/patterns/black-thread-light.png) to the body pf the webpage.
