@@ -12,12 +12,18 @@ function App() {
         setNotes([...notes, note]);
     }
 
+    function deleteNote(id) {
+        setNotes(prevArray => {
+            return prevArray.filter((note, index) => index !== id);
+        })
+    }
+
     return (
         <div>
             <Header />
             <InputArea onSubmit={addNote}/>
             {notes.map((note, index) => (
-                <Note key={`SGBPQ${index}`} id={index} title={note.title} content={note.content} />
+                <Note key={`SGBPQ${index}`} id={index} onClick={deleteNote} title={note.title} content={note.content} />
             ))}
             <Footer />
         </div>

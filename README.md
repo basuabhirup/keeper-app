@@ -11,7 +11,15 @@ This project is a part of [The Complete 2021 Web Development Bootcamp](https://w
 1. Downloaded the starting files and installed the requiring dependencies using `npm install` command.
 2. Created 4 components - `App`, `Header`, `Note` & `Footer` and edited them accordingly to render the corresponding elements in `ReactDOM`.
 3. Rendered all the notes inside `src/notes.js` file dynamically as separate Note components.
-4. Added an `InputArea` component inside `App` so that users can submit new notes.
+```javascript
+import notes from "../notes";
+```
+```jsx
+{notes.map((note) => (
+    <Note title={note.title} content={note.content} />
+))}
+```
+4. Added a new `InputArea` component inside `App` so that users can submit new notes.
 5. Added a `DELETE` button inside each `Note` component so that users can click that to delete a particular note.
 6. Created a new state variable `note` using `React.useState()` hook inside `InputArea` component to keep track of the changes made in the input fields. 
 ```javascript
@@ -44,8 +52,7 @@ function addNote(note) {
 ```
 <br />
 
-8. Disconnected the `notes.js` file from `App`.
-9. Passed the `addNote` function from `App` to `InputArea`, so that a newly added note can be passed back from `InputArea` to `App` component:
+8. Passed the `addNote` function from `App` to `InputArea`, so that a newly added note can be passed back from `InputArea` to `App` component:
 ```jsx
 // Code inside 'components/App.jsx' file:
 <InputArea onSubmit={addNote}/>
@@ -59,4 +66,35 @@ function addNote(note) {
 } }>
 .....
 </form>
+```
+<br />
+
+
+9. Disconnected the `notes.js` file from the `App` component.
+10. Rendered all the notes stored inside the `notes` array dynamically as separate Note components:
+```jsx
+{notes.map((note) => (
+    <Note title={note.title} content={note.content} />
+))}
+```
+<br />
+
+11. Created a function inside the `App` component to delete any particular note and passed it to its child `Note` component. Also, modified the `map()` method to pass the `index` value as `id` of each individual `Note` component, so that it can be used to identify any particular note that needs deletion:
+```javascript
+function deleteNote(id) {
+    setNotes(prevArray => {
+        return prevArray.filter((note, index) => index !== id);
+    })
+}
+```
+```jsx
+{notes.map((note, index) => (
+    <Note key={`SGBPQ${index}`} id={index} onClick={deleteNote} title={note.title} content={note.content} />
+))}
+```
+<br />
+
+12. Modified the code inside the `Note` component, so that after receiving props from its parent `App` component it can use them properly to delete any particular note:
+```jsx
+<button onClick={ () => props.onClick(props.id)}>DELETE</button>
 ```
