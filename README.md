@@ -1,11 +1,14 @@
 # Keeper App
+### Live Site URL: [https://keeper-app-basuabhirup.vercel.app](https://keeper-app-basuabhirup.vercel.app/)
 This project is a part of [The Complete 2021 Web Development Bootcamp](https://www.udemy.com/course/the-complete-web-development-bootcamp/) by [London App Brewery](https://www.londonappbrewery.com/), instructed by Dr. Angela Yu.
 <div align="center">
-    <img src="" alt="Project Screenshot" width=720px>
+    <img src="https://i.ibb.co/5RfDsTN/image.png" alt="Project Screenshot" width=720px>
 </div>
 
 ## Objective of this Project
 * To build a custom keeper app from the starting files
+* To understand components, states and hooks in React
+* To manage complex states and component tree in React
 
 ## Steps I have followed:
 1. Downloaded the starting files and installed the requiring dependencies using `npm install` command.
