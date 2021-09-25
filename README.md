@@ -124,6 +124,5 @@ const [isClicked, setIsClicked] = useState(false);
 <br />
 
 16. Added a [transparent texture background](https://www.transparenttextures.com/patterns/black-thread-light.png) to the body of the webpage.
-<br />
 
 ### Server-side Development:

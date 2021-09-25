@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import Header from "./Header";
 import InputArea from "./InputArea";
 import Note from "./Note";
@@ -8,14 +9,26 @@ import Footer from "./Footer";
 function App() {
     const [notes, setNotes] = useState([]);
 
+    useEffect(() => {
+        axios.get("/api/notes")
+        .then((res) => setNotes(res.data))
+        .catch((err) => console.error(err));
+    }, []);
+
     function addNote(note) {
-        setNotes([...notes, note]);
+        axios.post("/api/note/add", note)
+        .then((res) => setNotes(res.data))    
+        .catch((err) => console.error(err));
     }
 
     function deleteNote(id) {
-        setNotes(prevArray => {
-            return prevArray.filter((note, index) => index !== id);
+        axios.delete("/api/note/delete", {
+            data: {
+                index: id
+            }
         })
+        .then((res) => setNotes(res.data))    
+        .catch((err) => console.error(err)); 
     }
 
     return (
