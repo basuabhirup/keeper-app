@@ -11,6 +11,7 @@ This project is a part of [The Complete 2021 Web Development Bootcamp](https://w
 * To manage complex states and component tree in React
 
 ## Steps I have followed:
+### Client-side Development:
 1. Downloaded the starting files and installed the requiring dependencies using `npm install` command.
 2. Created 4 components - `App`, `Header`, `Note` & `Footer` and edited them accordingly to render the corresponding elements in `ReactDOM`.
 3. Rendered all the notes inside `src/notes.js` file dynamically as separate Note components.
@@ -123,3 +124,6 @@ const [isClicked, setIsClicked] = useState(false);
 <br />
 
 16. Added a [transparent texture background](https://www.transparenttextures.com/patterns/black-thread-light.png) to the body of the webpage.
+<br />
+
+### Server-side Development:
