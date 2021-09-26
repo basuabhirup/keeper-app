@@ -11,13 +11,13 @@ function App() {
 
     useEffect(() => {
         axios.get("/api/notes")
-        .then((res) => setNotes(res.data))
+        .then((res) => setNotes([...res.data]))
         .catch((err) => console.error(err));
     }, []);
 
     function addNote(note) {
         axios.post("/api/note/add", note)
-        .then((res) => setNotes(res.data))    
+        .then((res) => setNotes([...res.data]))    
         .catch((err) => console.error(err));
     }
 
@@ -25,7 +25,7 @@ function App() {
         axios.delete("/api/note/delete", {
             data: { objId: id }
         })
-        .then((res) => setNotes(res.data))    
+        .then((res) => setNotes([...res.data]))    
         .catch((err) => console.error(err)); 
     }
 
