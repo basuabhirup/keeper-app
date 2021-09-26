@@ -2,54 +2,71 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require("cors");
 
 // Assign an appropriate port for the server to listen:
 const port = process.env.PORT || 5000;
 
-// Initial setup:
+// Initial Middleware setup:
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(cors());
 
 
 // Connect to a new MongoDB Database, using Mongoose ODM:
+mongoose.connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.m5s9h.mongodb.net/keeperDB`);
 
-// Create a new collection inside the database to store data:
+mongoose.connection.once('open', () => {
+  console.log(`Connected to Mongo Atlas Database`);
+})
+
+// Create a new collection to store the notes:
+const noteSchema = new mongoose.Schema ({
+	title: String,
+	content: String
+})
+const Note = mongoose.model('Note', noteSchema);
 
 
-const notes = [
-  {
-    title: "1st Note from Server",
-    content: "Lorem Ipsum Dolor Amet Teri ghur effetc."
-  },
-  {
-    title: "2nd Note from Server",
-    content: "Lorem Ipsum Dolor Amet Teri ghur effetc."
-  },
-  {
-    title: "3rd Note from Server",
-    content: "Lorem Ipsum Dolor Amet Teri ghur effetc."
-  }
-]
 
 // Handle HTTP requests:
 
 // Handle 'GET' requests made on the '/api/notes' route to get all notes:
 app.get('/api/notes', (req, res) => {
-  res.json(notes);
+  Note.find({}, (err, notes) => {
+    if(!err) {
+      res.json(notes);
+    } else {
+      res.status(400).json({"error": err});
+    }
+  })
 })
 
 // Handle 'POST' requests made on the '/api/note/add' route to add a note:
 app.post('/api/note/add', (req, res) => {
-  notes.push(req.body);
-  res.json(notes);
+  const note = new Note(req.body);
+  note.save(err => {
+    if(!err) {
+      res.redirect('/api/notes');
+    } else {
+      res.status(400).json({"error": err});
+    }
+  })
 })
 
 // Handle 'DELETE' requests made on the '/api/note/delete' route to delete a particular note:
 app.delete('/api/note/delete', (req, res) => {
-  const id = req.body.index;
-  notes.splice(id, 1);
-  res.json(notes);
+  const id = req.body.objId;
+  Note.findByIdAndDelete(id, err => {
+    if(!err) {
+      Note.find({}, (err, notes) => {
+        !err ? res.json(notes) : res.status(400).json({"error": err});
+      })
+    } else {
+      res.status(400).json({"error": err});
+    }
+  })
 })
 
 // Enable the server to listen to the port:
