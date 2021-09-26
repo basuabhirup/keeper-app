@@ -23,9 +23,7 @@ function App() {
 
     function deleteNote(id) {
         axios.delete("/api/note/delete", {
-            data: {
-                index: id
-            }
+            data: { objId: id }
         })
         .then((res) => setNotes(res.data))    
         .catch((err) => console.error(err)); 
@@ -35,8 +33,8 @@ function App() {
         <div>
             <Header />
             <InputArea onSubmit={addNote}/>
-            {notes.map((note, index) => (
-                <Note key={`SGBPQ${index}`} id={index} onClick={deleteNote} title={note.title} content={note.content} />
+            {notes.map((note) => (
+                <Note key={note._id.toString()} id={note._id} onClick={deleteNote} title={note.title} content={note.content} />
             ))}
             <Footer />
         </div>
