@@ -34,7 +34,7 @@ function App() {
             <Header />
             <InputArea onSubmit={addNote}/>
             {notes.map((note) => (
-                <Note key={note._id.toString()} id={note._id} onClick={deleteNote} title={note.title} content={note.content} />
+                <Note key={note._id} id={note._id} onClick={deleteNote} title={note.title} content={note.content} />
             ))}
             <Footer />
         </div>
