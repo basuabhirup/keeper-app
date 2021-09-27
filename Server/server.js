@@ -25,7 +25,10 @@ mongoose.connection.once('open', () => {
 const noteSchema = new mongoose.Schema ({
 	title: String,
 	content: String
+}, {
+  timestamps: true
 })
+
 const Note = mongoose.model('Note', noteSchema);
 
 
@@ -55,14 +58,12 @@ app.post('/api/note/add', (req, res) => {
   })
 })
 
-// Handle 'DELETE' requests made on the '/api/note/delete' route to delete a particular note:
-app.delete('/api/note/delete', (req, res) => {
+// Handle 'POST' requests made on the '/api/note/delete' route to delete a particular note:
+app.post('/api/note/delete', (req, res) => {
   const id = req.body.objId;
-  Note.findByIdAndDelete(id, err => {
+  Note.findByIdAndRemove(id, err => {
     if(!err) {
-      Note.find({}, (err, notes) => {
-        !err ? res.json(notes) : res.status(400).json({"error": err});
-      })
+      res.redirect('/api/notes');
     } else {
       res.status(400).json({"error": err});
     }

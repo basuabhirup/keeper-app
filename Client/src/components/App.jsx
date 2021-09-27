@@ -11,21 +11,31 @@ function App() {
 
     useEffect(() => {
         axios.get("/api/notes")
-        .then((res) => setNotes([...res.data]))
+        .then((res) => {
+            if(res.data.length > 0 ) {
+                setNotes([...res.data]);
+            } else {
+                setNotes([]);
+            }  
+        })
         .catch((err) => console.error(err));
     }, []);
 
     function addNote(note) {
         axios.post("/api/note/add", note)
-        .then((res) => setNotes([...res.data]))    
+        .then((res) => setNotes([...res.data])) 
         .catch((err) => console.error(err));
     }
 
     function deleteNote(id) {
-        axios.delete("/api/note/delete", {
-            data: { objId: id }
+        axios.post("/api/note/delete", {objId: id})
+        .then((res) => {
+            if(res.data.length > 0 ) {
+                setNotes([...res.data]);
+            } else {
+                setNotes([]);
+            }
         })
-        .then((res) => setNotes([...res.data]))    
         .catch((err) => console.error(err)); 
     }
 
