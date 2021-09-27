@@ -13,7 +13,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
-// app.use(express.static(path.join(__dirname, 'Client', 'build')));
+// app.use(express.static(path.join(__dirname, '../Client', 'build')));
 
 
 // Connect to a new MongoDB Database, using Mongoose ODM:
@@ -40,7 +40,7 @@ const Note = mongoose.model('Note', noteSchema);
 // Handle 'GET' requests made on the '/' route (In future projects, this may serve the client's optimized production build):
 app.get('/', (req, res) => {
   res.json({Connection: "Succesfully Established !"})
-  // res.sendFile(path.join(__dirname, 'Client', 'build', 'index.html'));
+  // res.sendFile(path.join(__dirname, '../Client', 'build', 'index.html'));
 });
 
 // Handle 'GET' requests made on the '/api/notes' route to get all notes:
