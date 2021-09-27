@@ -41,7 +41,6 @@ footer p {
   position: sticky;
   overflow: hidden;
   min-height: 70vh;
-  border: 2px solid red;
 }
 
 .note {
