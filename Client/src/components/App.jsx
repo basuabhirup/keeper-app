@@ -22,7 +22,12 @@ function App() {
     }, []);
 
     function addNote(note) {
-        axios.post("https://keeper-app-backend-basuabhirup.vercel.app/api/note/add", note)
+        axios.post("https://keeper-app-backend-basuabhirup.vercel.app/api/note/add", note, {
+            headers: {
+              "Content-Type": "application/json",
+              'Access-Control-Allow-Origin': '*',
+              }
+            })
         .then((res) => setNotes([...res.data])) 
         .catch((err) => console.error(err));
     }
