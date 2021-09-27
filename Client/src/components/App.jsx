@@ -10,7 +10,7 @@ function App() {
     const [notes, setNotes] = useState([]);
 
     useEffect(() => {
-        axios.get("/api/notes")
+        axios.get("https://keeper-app-backend-basuabhirup.vercel.app/api/notes")
         .then((res) => {
             if(res.data.length > 0 ) {
                 setNotes([...res.data]);
@@ -22,13 +22,13 @@ function App() {
     }, []);
 
     function addNote(note) {
-        axios.post("/api/note/add", note)
+        axios.post("https://keeper-app-backend-basuabhirup.vercel.app/api/note/add", note)
         .then((res) => setNotes([...res.data])) 
         .catch((err) => console.error(err));
     }
 
     function deleteNote(id) {
-        axios.delete("/api/note/delete", { data: { objId: id} })
+        axios.delete("https://keeper-app-backend-basuabhirup.vercel.app/api/note/delete", { data: { objId: id} })
         .then((res) => {
             if (res.data === `Deleted note with id: ${id} !`) {
                 setNotes(notes.filter(note => note._id !== id))
@@ -41,9 +41,11 @@ function App() {
         <div>
             <Header />
             <InputArea onSubmit={addNote}/>
-            {notes.map((note) => (
-                <Note key={note._id} id={note._id} onClick={deleteNote} title={note.title} content={note.content} />
-            ))}
+            <article className="note-container">
+                {notes.map((note) => (
+                    <Note key={note._id} id={note._id} onClick={deleteNote} title={note.title} content={note.content} />
+                ))}
+            </article>       
             <Footer />
         </div>
     )

@@ -25,17 +25,25 @@ header h1 {
 }
 
 footer {
-  position: absolute;
+  display: block;
   text-align: center;
+  margin: 1rem auto 0;
   padding: 0;
-  bottom: 0;
-  width: 99%;
+  min-width: 95vw;
   height: 2.5rem;
 }
 
 footer p {
   color: #888;
 }
+
+.note-container {
+  position: sticky;
+  overflow: hidden;
+  min-height: 70vh;
+  border: 2px solid red;
+}
+
 .note {
   background: #fff;
   border-radius: 7px;
