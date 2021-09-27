@@ -58,12 +58,12 @@ app.post('/api/note/add', (req, res) => {
   })
 })
 
-// Handle 'POST' requests made on the '/api/note/delete' route to delete a particular note:
-app.post('/api/note/delete', (req, res) => {
+// Handle 'DELETE' requests made on the '/api/note/delete' route to delete a particular note:
+app.delete('/api/note/delete', (req, res) => {
   const id = req.body.objId;
   Note.findByIdAndRemove(id, err => {
     if(!err) {
-      res.redirect('/api/notes');
+      res.json(`Deleted note with id: ${id} !`);
     } else {
       res.status(400).json({"error": err});
     }

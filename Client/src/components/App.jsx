@@ -28,15 +28,13 @@ function App() {
     }
 
     function deleteNote(id) {
-        axios.post("/api/note/delete", {objId: id})
+        axios.delete("/api/note/delete", { data: { objId: id} })
         .then((res) => {
-            if(res.data.length > 0 ) {
-                setNotes([...res.data]);
-            } else {
-                setNotes([]);
+            if (res.data === `Deleted note with id: ${id} !`) {
+                setNotes(notes.filter(note => note._id !== id))
             }
         })
-        .catch((err) => console.error(err)); 
+        .catch((err) => console.error(err));
     }
 
     return (
