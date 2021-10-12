@@ -229,3 +229,6 @@ app.delete('/api/note/delete', (req, res) => {
 })
 ```
 <br />
+
+21. Deployed the server at `https://keeper-app-backend-basuabhirup.vercel.app`
+22. Finally, deployed the frontend portion at `https://keeper-app-basuabhirup.vercel.app`
